@@ -1,12 +1,13 @@
 # Filter-JiraIssue.ps1
-Param(
-	[Parameter(Mandatory=$False)] [string] $username = "",
-	[Parameter(Mandatory=$False)] [string] $token = "",
-	[Parameter(Mandatory=$False)] [string] $query = "",
-	[Parameter(Mandatory=$False)] [switch] $RunStdQueries = $True,
-	[Parameter(Mandatory=$False)] [switch] $DoNotSaveCred = $False
-)
 
+Arguments:
+[string] $username = ""
+[string] $token = ""
+[string] $query = ""
+[switch] $RunStdQueries = $True
+[switch] $DoNotSaveCred = $False
+
+Examples:
 Filter-JiraIssue.ps1 `
   -username "abc@def.ghi" `
   -token "ATATT3xFfGF0Ku6zsqKSAC2M................................................" `

@@ -1,11 +1,11 @@
 # Filter-JiraIssue.ps1
 
 Arguments:
-[string] $username = ""
-[string] $token = ""
-[string] $query = ""
-[switch] $RunStdQueries = $True
-[switch] $DoNotSaveCred = $False
+string $username = ""
+string $token = ""
+string $query = ""
+switch $RunStdQueries = $True
+switch $DoNotSaveCred = $False
 
 Examples:
 Filter-JiraIssue.ps1 `

@@ -5,9 +5,17 @@ Param(
 	[Parameter(Mandatory=$False)] [string] $username = "",
 	[Parameter(Mandatory=$False)] [string] $token = "",
 	[Parameter(Mandatory=$False)] [string] $query = "",
+	[Parameter(Mandatory=$False)] [string] $filter = "",
 	[Parameter(Mandatory=$False)] [switch] $RunStdQueries = $True,
 	[Parameter(Mandatory=$False)] [switch] $DoNotSaveCred = $False
 )
+
+################################################################################
+
+$Server = 'https://headitsolutions.atlassian.net'
+$API = "$Server/rest/api/latest"
+
+Write-Host -f Green "API: $API"
 
 ################################################################################
 
@@ -38,11 +46,6 @@ if ($username -eq "" -AND $token -eq "") {
 }
 
 ################################################################################
-
-$Server = 'https://headitsolutions.atlassian.net'
-$API = "$Server/rest/api/latest"
-
-Write-Host -f Green "API: $API"
 
 $auth = ([System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("${username}:${token}")))
 $Headers = @{"Authorization" = "Basic $auth"}
@@ -264,13 +267,17 @@ if ($UserQuery -eq $null) {
 	Write-Host -f red "- Failed to get AccountID"
 	exit 1
 }
-$accountId = $User.accountId
+$accountId = $UserQuery.accountId
 
 ################################################################################
 
 if ($query -ne "") {
 	Search-JiraIssue -Summary $Query
-	#Filter-JiraIssues -Query $query
+	exit 0
+}
+
+if ($filter -ne "") {
+	Filter-JiraIssues -Query $filter
 	exit 0
 }
 

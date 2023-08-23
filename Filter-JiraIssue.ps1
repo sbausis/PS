@@ -272,7 +272,13 @@ $accountId = $UserQuery.accountId
 ################################################################################
 
 if ($query -ne "") {
-	Search-JiraIssue -Summary $Query
+	$issues = Search-JiraIssue -Summary $Query
+	$issues | ForEach-Object {
+		$Key = $_.Key
+		if (($Key)) {
+			Write-Host -f green "- Found Issue: $Key Status: $status Query: $Query"
+		}
+	}
 	exit 0
 }
 

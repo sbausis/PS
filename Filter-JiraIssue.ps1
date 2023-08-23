@@ -4,7 +4,9 @@
 Param(
 	[Parameter(Mandatory=$False)] [string] $username = "",
 	[Parameter(Mandatory=$False)] [string] $token = "",
-	[Parameter(Mandatory=$False)] [string] $query = ""
+	[Parameter(Mandatory=$False)] [string] $query = "",
+	[Parameter(Mandatory=$False)] [switch] $RunStdQueries = $True,
+	[Parameter(Mandatory=$False)] [switch] $DoNotSaveCred = $False
 )
 
 ################################################################################
@@ -12,7 +14,7 @@ Param(
 $LogFile = "$($PSScriptRoot)\.Filter-JiraIssue.log"
 
 $CredPath = "$($PSScriptRoot)\.Filter-JiraIssue.cred"
-if ($username -ne "" -AND $token -ne "") {
+if ($username -ne "" -AND $token -ne "" -AND $DoNotSaveCred -ne $True) {
 	Write-Host -f yellow "- Saving Credentials to $CredPath"
 	$creds = [PSCustomObject]@{
 		username = $username
@@ -265,32 +267,37 @@ if ($UserQuery -eq $null) {
 $accountId = $User.accountId
 
 ################################################################################
-# Standard Ausnahmen
 
 if ($query -ne "") {
-	Filter-JiraIssues -Query $query
+	Search-JiraIssue -Summary $Query
+	#Filter-JiraIssues -Query $query
 	exit 0
 }
 
-Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [eGroup AG]: Firewall VPN Tunnel ausgefallen"
-Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [Tellco AG]: Firewall VPN Tunnel ausgefallen"
-Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [Intrasoft AG]: Firewall VPN Tunnel ausgefallen"
-Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [HEAD IT Solutions AG]: Firewall VPN Tunnel ausgefallen"
-Filter-JiraIssues -Query "[MEDIUM] Alert for Sophos Central [Beiner AG]: Firewall VPN tunnel down"
-Filter-JiraIssues -Query "[MEDIUM] Alert for Sophos Central [Job 3000 AG]: Firewall VPN tunnel down"
-Filter-JiraIssues -Query "[LOW] Alert for Sophos Central [Beiner AG]: Firewall VPN tunnel connection restored"
-Filter-JiraIssues -Query "[Success] Beiner VPCs"
-Filter-JiraIssues -Query "[Warning] Beiner VPCs"
-Filter-JiraIssues -Query "FW: System-Backup Warnungen"
-Filter-JiraIssues -Query "FW: Linear_Data_Backup Warnungen"
-Filter-JiraIssues -Query "Malware Protection Malware History Deleted"
-Filter-JiraIssues -Query "Malware Protection Config Changed"
-Filter-JiraIssues -Query "Monthly Disk Health Report on - Healthy"
-Filter-JiraIssues -Query "Monatlicher Festplattenintegritätsbericht zu - In Ordnung"
-Filter-JiraIssues -Query "Monatlicher Laufwerkszustandsbericht auf - Healthy"
-Filter-JiraIssues -Query "GmeinerMonthly Disk Health Report on NAS - Healthy"
-Filter-JiraIssues -Query "AGMonatlicher Festplattenintegritätsbericht zu NAS02 - In Ordnung"
-Filter-JiraIssues -Query "GmeinerMonthly Disk Health Report on NAS - Healthy"
+################################################################################
+# Standard Ausnahmen
+
+if ($RunStdQueries -eq $true) {
+	Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [eGroup AG]: Firewall VPN Tunnel ausgefallen"
+	Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [Tellco AG]: Firewall VPN Tunnel ausgefallen"
+	Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [Intrasoft AG]: Firewall VPN Tunnel ausgefallen"
+	Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [HEAD IT Solutions AG]: Firewall VPN Tunnel ausgefallen"
+	Filter-JiraIssues -Query "[MEDIUM] Alert for Sophos Central [Beiner AG]: Firewall VPN tunnel down"
+	Filter-JiraIssues -Query "[MEDIUM] Alert for Sophos Central [Job 3000 AG]: Firewall VPN tunnel down"
+	Filter-JiraIssues -Query "[LOW] Alert for Sophos Central [Beiner AG]: Firewall VPN tunnel connection restored"
+	Filter-JiraIssues -Query "[Success] Beiner VPCs"
+	Filter-JiraIssues -Query "[Warning] Beiner VPCs"
+	Filter-JiraIssues -Query "FW: System-Backup Warnungen"
+	Filter-JiraIssues -Query "FW: Linear_Data_Backup Warnungen"
+	Filter-JiraIssues -Query "Malware Protection Malware History Deleted"
+	Filter-JiraIssues -Query "Malware Protection Config Changed"
+	Filter-JiraIssues -Query "Monthly Disk Health Report on - Healthy"
+	Filter-JiraIssues -Query "Monatlicher Festplattenintegritätsbericht zu - In Ordnung"
+	Filter-JiraIssues -Query "Monatlicher Laufwerkszustandsbericht auf - Healthy"
+	Filter-JiraIssues -Query "GmeinerMonthly Disk Health Report on NAS - Healthy"
+	Filter-JiraIssues -Query "AGMonatlicher Festplattenintegritätsbericht zu NAS02 - In Ordnung"
+	Filter-JiraIssues -Query "GmeinerMonthly Disk Health Report on NAS - Healthy"
+}
 
 ################################################################################
 

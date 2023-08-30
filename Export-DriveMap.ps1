@@ -100,14 +100,13 @@ Write-Host -f Green "- ShowDisabledUser: $ShowDisabledUser"
 ################################################################################
 
 $ADName = (Get-ADDomain).Name.ToUpper()
-$FileName = "C:\Scripts\$($ADName)-DriveMap.xlsx"
+$FileName = "$($PSScriptRoot)\$($ADName)-DriveMap.xlsx"
 
-#$ADUsers = Get-ADUser -Filter * -SearchBase $SearchBase | Where-Object { $_.Enabled -eq $true -AND $_.UserPrincipalName -match "@blzag.ch" }
 Write-Host -f Yellow "- Search for Users in $SearchBase"
 if ($ShowDisabledUser -eq $true) {
-	$ADUsers = Get-ADUser -Filter * -SearchBase $SearchBase | Sort-Object -Property msDS-parentdistname
+	$ADUsers = Get-ADUser -Filter * -SearchBase $SearchBase | Sort-Object -Property SamAccountName
 } else {
-	$ADUsers = Get-ADUser -Filter * -SearchBase $SearchBase | Where-Object { $_.Enabled -eq $true } | Sort-Object -Property msDS-parentdistname
+	$ADUsers = Get-ADUser -Filter * -SearchBase $SearchBase | Where-Object { $_.Enabled -eq $true } | Sort-Object -Property SamAccountName
 }
 Write-Host -f Green "- Found "$ADUsers.count" Users"
 

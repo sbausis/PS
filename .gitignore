@@ -52,5 +52,5 @@ Mkfile.old
 dkms.conf
 *.cred
 .Filter-JiraIssue.log
-Export-DriveMap - OLD.ps1
-Filter-JiraIssue - OLD.ps1
+Filter-JiraIssue_old.ps1
+Export-DriveMap_old.ps1

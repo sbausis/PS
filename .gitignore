@@ -54,3 +54,5 @@ dkms.conf
 .Filter-JiraIssue.log
 Filter-JiraIssue_old.ps1
 Export-DriveMap_old.ps1
+*.id
+*.jwt

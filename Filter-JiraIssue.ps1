@@ -308,12 +308,13 @@ if ($RunStdQueries -eq $true) {
 	Filter-JiraIssues -Query "Monatlicher Festplattenintegritätsbericht zu - In Ordnung"
 	Filter-JiraIssues -Query "Monatlicher Laufwerkszustandsbericht auf - Healthy"
 	Filter-JiraIssues -Query "GmeinerMonthly Disk Health Report on NAS - Healthy"
-	Filter-JiraIssues -Query "AGMonatlicher Festplattenintegritätsbericht zu NAS02 - In Ordnung"
+	Filter-JiraIssues -Query "AGMonatlicher Festplattenintegritätsbericht zu NAS* - In Ordnung"
 	Filter-JiraIssues -Query "GmeinerMonthly Disk Health Report on NAS - Healthy"
 }
 
 ################################################################################
 
+Filter-JiraIssues -Query "Alert: Intrasoft AG"
 #Filter-JiraIssues -Query "Täglicher Statusbericht"
 #Filter-JiraIssues -Query "FW: Backup ist fehlgeschlagen"
 

@@ -99,7 +99,7 @@ Write-Host -f Green "- ShowDisabledUser: $ShowDisabledUser"
 
 ################################################################################
 
-$ADName = (Get-ADDomain).Name.ToUpper()
+$ADName = (Get-ADDomain).Forest.ToUpper()
 $FileName = "$($PSScriptRoot)\$($ADName)-DriveMap.xlsx"
 
 Write-Host -f Yellow "- Search for Users in $SearchBase"

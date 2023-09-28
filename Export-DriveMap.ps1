@@ -84,7 +84,7 @@ $GPOS = $GPO_Xml.GPOS.GPO
 $GPOS | ForEach-Object {
 	$GPOName = $_.Name
 	if ($_.User.ExtensionData.Extension.DriveMapSettings -ne $null) {
-		if ($_.User.ExtensionData.Extension.DriveMapSettings.GetType() -eq [object[]]) {
+		if ($_.User.ExtensionData.Extension.DriveMapSettings.GetType().Name -eq "XmlElement") {
 			Write-Host -f yellow "- Found GPO $GPOName with User Drive Maps"
 			$NameGPO = $GPOName
 		}

@@ -144,7 +144,7 @@ Check-Prerequirements
 ## SEARCH UPDATES
 if ($Install -eq $true) {
 	Write-Host "- Searching for Updates ..."
-	$Updates = Get-WindowsUpdate -Install
+	$Updates = Get-WindowsUpdate -Install -AcceptAll -AutoReboot
 } else {
 	Write-Host "- Searching for Updates ..."
 	$Updates = Get-WindowsUpdate

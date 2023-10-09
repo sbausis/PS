@@ -13,7 +13,7 @@ function Check-PackageProvider {
 		[Parameter (Mandatory = $false)] [string] $PackageProvider = "NuGet"
 	)
 	## GET PACKAGEPROVIDER
-	if ((Get-PackageProvider -Name $PackageProvider -ErrorAction SilentlyContinue) -eq $null) {
+	if ((Get-PackageProvider -Name $PackageProvider -ListAvailable -ErrorAction SilentlyContinue) -eq $null) {
 		Write-Host -f yellow "- Installing PackageProvider $PackageProvider ..."
 		if ((Install-PackageProvider -Name $PackageProvider -Force -ErrorAction SilentlyContinue) -eq $null) {
 			Write-Host -f red "- Could not install PackageProvider $PackageProvider !!!"

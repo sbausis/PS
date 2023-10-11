@@ -104,11 +104,11 @@ function Check-ImportModule {
 			$InstalledModule = Get-InstalledModule -Name $ModuleName -ErrorAction SilentlyContinue
 			$AvailableModule = Get-Module -Name $ModuleName -ListAvailable
 			if ($InstalledModule -ne $null -AND $AvailableModule -ne $null) {
-				if (($InstalledModule.Version) -lt ($AvailableModule.Version)) {
-					Write-Host -f Yellow "- Updating Module $ModuleName $($InstalledModule.Version) to $($AvailableModule.Version) ..."
+				if (($InstalledModule.Version[0]) -lt ($AvailableModule.Version[0])) {
+					Write-Host -f Yellow "- Updating Module $ModuleName $($InstalledModule.Version[0]) to $($AvailableModule.Version[0]) ..."
 					Update-Module -Name $ModuleName -Force
 				} else {
-					Write-Host -f Green "- Module $ModuleName $($InstalledModule.Version) is already up to Date ..."
+					Write-Host -f Green "- Module $ModuleName $($InstalledModule.Version[0]) is already up to Date ..."
 				}
 			} else {
 				Write-Host -f Red " - ERROR : Failed to get Module Version !!!"

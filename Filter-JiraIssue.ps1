@@ -12,7 +12,7 @@ Param(
 
 ################################################################################
 
-$Server = 'https://headitsolutions.atlassian.net'
+$Server = ''
 $API = "$Server/rest/api/latest"
 
 Write-Host -f Green "API: $API"
@@ -291,66 +291,19 @@ if ($filter -ne "") {
 # Standard Ausnahmen
 
 if ($RunStdQueries -eq $true) {
-	Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [eGroup AG]: Firewall VPN Tunnel ausgefallen"
-	Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [Tellco AG]: Firewall VPN Tunnel ausgefallen"
-	Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [Intrasoft AG]: Firewall VPN Tunnel ausgefallen"
-	Filter-JiraIssues -Query "[MITTEL] Alarm Sophos Central [HEAD IT Solutions AG]: Firewall VPN Tunnel ausgefallen"
-	Filter-JiraIssues -Query "[MEDIUM] Alert for Sophos Central [Beiner AG]: Firewall VPN tunnel down"
-	Filter-JiraIssues -Query "[MEDIUM] Alert for Sophos Central [Job 3000 AG]: Firewall VPN tunnel down"
-	Filter-JiraIssues -Query "[LOW] Alert for Sophos Central [Beiner AG]: Firewall VPN tunnel connection restored"
-	Filter-JiraIssues -Query "[Success] Beiner VPCs"
-	Filter-JiraIssues -Query "[Warning] Beiner VPCs"
-	Filter-JiraIssues -Query "FW: System-Backup Warnungen"
-	Filter-JiraIssues -Query "FW: Linear_Data_Backup Warnungen"
-	Filter-JiraIssues -Query "Malware Protection Malware History Deleted"
-	Filter-JiraIssues -Query "Malware Protection Config Changed"
-	Filter-JiraIssues -Query "Monthly Disk Health Report on - Healthy"
-	Filter-JiraIssues -Query "Monatlicher Festplattenintegritätsbericht zu - In Ordnung"
-	Filter-JiraIssues -Query "Monatlicher Laufwerkszustandsbericht auf - Healthy"
-	Filter-JiraIssues -Query "GmeinerMonthly Disk Health Report on NAS - Healthy"
-	Filter-JiraIssues -Query "AGMonatlicher Festplattenintegritätsbericht zu NAS* - In Ordnung"
-	Filter-JiraIssues -Query "GmeinerMonthly Disk Health Report on NAS - Healthy"
+	Filter-JiraIssues -Query "EXAMPLE"
 }
 
 ################################################################################
-
-Filter-JiraIssues -Query "Alert: Intrasoft AG"
-#Filter-JiraIssues -Query "Täglicher Statusbericht"
-#Filter-JiraIssues -Query "FW: Backup ist fehlgeschlagen"
-
-#Filter-JiraIssues -Query "High CPU Usage"
-#Filter-JiraIssues -Query "High CPU Usage"
-#
-#Filter-JiraIssues -Query "ALERT CONFIGURATION: Warning - High Memory"
-#Filter-JiraIssues -Query "ALERT CONFIGURATION: Critical - High Memory Committed"
-#Filter-JiraIssues -Query "[Incident][Switzerland (EU5)]"
-#Filter-JiraIssues -Query "ALERT CONFIGURATION: Service has terminated"
-#Filter-JiraIssues -Query "SITE: Intrasoft AG, DEVICE: SVGENTP-CHPO-01, "
-
-#Filter-JiraIssues -Query "Firewall-VPN-Tunnel läuft nicht"
-#Filter-JiraIssues -Query "Alarm für Sophos Central"
-#Filter-JiraIssues -Query "[387215][Incident][Switzerland (EU5)]"
-#Filter-JiraIssues -Query "SITE: Intrasoft AG, ALERT CONFIGURATION: Delivery Failures Alerting"
-#Filter-JiraIssues -Query "Acronis Cyber Protection console, Acronis Files Cloud are available now"
-#Filter-JiraIssues -Query "Acronis Cyber Protection console is partially degraded"
-#Filter-JiraIssues -Query "Verbindung der Firewall zu Sophos Central unterbrochen"
-#Filter-JiraIssues -Query "SITE: Robomat, "
-#Filter-JiraIssues -Query "[MITTEL] Alarm für Sophos Central [Tellco AG]: Ein Gerät ist nicht verschlüsselt"
-
-#Filter-JiraIssues -Query "Malware Protection"
-#Filter-JiraIssues -Query "High Memory Committed"
-#Filter-JiraIssues -Query "Warning - Low Disk Space"
-#Filter-JiraIssues -Query "SITE: Intrasoft AG"
-#Filter-JiraIssues -Query "Windows update installation failure"
 
 exit 0
 
 ################################################################################
 #
-#Write-Host -f yellow 'Get-JiraIssue -Key "HISHELP-8755"'
-#Get-JiraIssue -Key "HISHELP-8755"
+#Write-Host -f yellow 'Get-JiraIssue -Key ""'
+#Get-JiraIssue -Key ""
 #
-#Write-Host -f yellow 'New-JiraIssue -Summary "HIS | Neues automatisch erstelltes Ticket" -Description "Irgendeine Beschreibung hier"'
+#Write-Host -f yellow 'New-JiraIssue -Summary "Neues automatisch erstelltes Ticket" -Description "Irgendeine Beschreibung hier"'
 #New-JiraIssue -Summary "HIS | Neues automatisch erstelltes Ticket" -Description "Irgendeine Beschreibung hier"
 #
 #Write-Host -f yellow 'Get-JiraUser -AccountID $accountId'

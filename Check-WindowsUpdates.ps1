@@ -1,6 +1,7 @@
 
 Param(
-	[Parameter(Mandatory=$False)] [switch] $Install = $false
+	[Parameter(Mandatory=$False)] [switch] $Install = $false,
+	[Parameter(Mandatory=$False)] [switch] $AutoReboot = $false
 )
 
 ## TLS FIX
@@ -146,7 +147,7 @@ Check-Prerequirements
 ## SEARCH UPDATES
 if ($Install -eq $true) {
 	Write-Host "- Searching for Updates ..."
-	$Updates = Get-WindowsUpdate -Install -AcceptAll -AutoReboot
+	$Updates = Get-WindowsUpdate -Install -AcceptAll -AutoReboot:$AutoReboot
 } else {
 	Write-Host "- Searching for Updates ..."
 	$Updates = Get-WindowsUpdate
